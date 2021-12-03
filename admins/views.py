@@ -148,7 +148,8 @@ def make_payment(request):
 
         payment = client.order.create(data=data)
         post_data = {
-            "order_id":payment['id']
+            "order_id":payment['id'],
+            "items": body_data['items']
         }
         serialized_data = OrderSerializer(data=post_data)
         if serialized_data.is_valid():
@@ -161,6 +162,7 @@ def make_payment(request):
 
 @api_view(['POST'])
 def verify_sign(request):
+    """Verify if a signature is valid or not"""
     body_data = request.data
     order_ID = body_data['razorpay_order_id']
     payment_id = body_data['razorpay_payment_id']
