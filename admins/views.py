@@ -1,4 +1,6 @@
 import json
+import hmac
+import hashlib
 from django.shortcuts import render
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
@@ -7,6 +9,7 @@ from .models import GeometryModel, ProperitesModel, ProductModel, InventoryModel
 from .serializers import GeometrySerializer, ProperitesSerializer, ProductSerializer, InventorySerializer, StoreSerializer, AllStoreSerializer, OrderSerializer
 import razorpay
 client = razorpay.Client(auth=("rzp_test_exJ9gstv3NbI4x", "VLUIYlEdzMwF0p72hhwEuVWx"))
+secret = b"VLUIYlEdzMwF0p72hhwEuVWx"
 # Create your views here.
 
 
@@ -155,3 +158,17 @@ def make_payment(request):
         orders = OrdersModel.objects.all()
         serialized_data = OrderSerializer(orders, many=True)
         return Response(serialized_data.data)
+
+@api_view(['POST'])
+def verify_sign(request):
+    body_data = request.data
+    order_ID = body_data['razorpay_order_id']
+    payment_id = body_data['razorpay_payment_id']
+    signature = body_data['razorpay_signature']
+    mystr = (order_ID + "|" + payment_id).encode()
+    generated_signature = hmac.new(secret, mystr, hashlib.sha256).hexdigest()
+    print(generated_signature)
+    if generated_signature == signature:
+        print("Sucess")
+        return Response({"message":"Sucess"}, status=status.HTTP_200_OK)
+    return Response({"message":"Failure"}, status=status.HTTP_400_BAD_REQUEST)

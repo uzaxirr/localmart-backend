@@ -57,6 +57,7 @@ class OrdersModel(models.Model):
     """Model to hold Details of all orders"""
     id = models.AutoField(primary_key=True)
     order_id = models.CharField(max_length=50)
+    #TODO: Add Items Array 
 
     def __str__(self) -> str:
         return self.order_id
