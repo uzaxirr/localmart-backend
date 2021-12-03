@@ -36,3 +36,16 @@ https://localmart-api.herokuapp.com/api/stores - Get All Stores
 
 GET
 https://localmart-api.herokuapp.com/api/products/:id - Get All Products of a inventory
+
+
+
+POST
+
+
+https://localmart-api.herokuapp.com/api/payment  - Make a Payment (Using Razorpay's SDK)
+
+
+POST
+
+
+https://localmart-api.herokuapp.com/api/verify - Verify a Signature 
