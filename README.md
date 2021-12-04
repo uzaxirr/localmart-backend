@@ -12,10 +12,26 @@ POST, GET
 
 https://localmart-api.herokuapp.com/api/prop - Create and Get Properties
 
+
+GET
+
+https://localmart-api.herokuapp.com/api/prop/:id - Get Properites By Properties ID
+
+
+
 POST, GET
 
 
 https://localmart-api.herokuapp.com/api/geo - Create and Get Geometry
+
+
+
+GET
+
+
+https://localmart-api.herokuapp.com/api/geo/:id - Get Geometry By Geometry ID
+
+
 
 POST, GET
 
@@ -36,7 +52,6 @@ https://localmart-api.herokuapp.com/api/stores - Get All Stores
 
 GET
 https://localmart-api.herokuapp.com/api/products/:id - Get All Products of a inventory
-
 
 
 POST
