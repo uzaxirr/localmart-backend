@@ -13,6 +13,7 @@ from .views import (
     get_geo_by_id,
     products_by_id,
     get_store_inventory,
+    get_order_by_store,
     )
 urlpatterns = [
     path('product', create_and_get_products),
@@ -28,4 +29,5 @@ urlpatterns = [
     path('inventory/products/<int:pk>', get_inventory_products),
     path('payment', make_payment),
     path('verify', verify_sign),
+    path('orders/<int:pk>', get_order_by_store),
 ]

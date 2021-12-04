@@ -188,7 +188,8 @@ def make_payment(request):
         payment = client.order.create(data=data)
         post_data = {
             "order_id":payment['id'],
-            "items": body_data['items']
+            "items": body_data['items'],
+            "store_id": body_data['store_id'],
         }
         serialized_data = OrderSerializer(data=post_data)
         if serialized_data.is_valid():
@@ -213,3 +214,12 @@ def verify_sign(request):
         print("Sucess")
         return Response({"message":"Sucess"}, status=status.HTTP_200_OK)
     return Response({"message":"Failure"}, status=status.HTTP_400_BAD_REQUEST)
+
+
+@api_view(['GET'])
+def get_order_by_store(request, pk):
+    """Get all orders by store"""
+    orders = OrdersModel.objects.filter(store_id=pk)
+    serialized_data = OrderSerializer(orders, many=True)
+    return Response(serialized_data.data)
+    

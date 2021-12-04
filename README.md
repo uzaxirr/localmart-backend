@@ -77,3 +77,9 @@ POST
 
 
 https://localmart-api.herokuapp.com/api/verify - Verify a Signature 
+
+
+GET
+
+
+https://localmart-api.herokuapp.com/api/orders/:id - Get Orders by Store ID
