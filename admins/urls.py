@@ -11,7 +11,7 @@ from .views import (
     verify_sign,
     get_properites,
     get_geo_by_id,
-    products_by_id
+    products_by_id,
     )
 urlpatterns = [
     path('product', create_and_get_products),

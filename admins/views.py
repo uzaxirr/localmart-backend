@@ -105,6 +105,7 @@ def create_and_get_store(request):
         serialized_data = StoreSerializer(store, many=True)
         return Response(serialized_data.data)
 
+
 @api_view(['GET'])
 def get_all_stores(request):
     """Get all stores"""
@@ -117,19 +118,16 @@ def get_all_stores(request):
     for store in all_stores:
         geo_id = store["geometry"]
         prop_id = store["properties"]
-        resp = get_geo_by_id(geo_id)
+        resp = get_geo_by_id_func(geo_id)
         prop_resp = get_properties_by_id(prop_id)
         geoArray.append(resp.data)
         prop_array.append(prop_resp.data)
         store_array.append(store)
-        print("GEO ID: ", geo_id)
-        print("Prop ID: ", prop_id)
     return Response({"Geometry":geoArray, "Properties": prop_array, "Stores": store_array})
 
-def get_geo_by_id(obj_id):
+def get_geo_by_id_func(obj_id):
     queryset = GeometryModel.objects.filter(id=obj_id)
     serialized_geo = GeometrySerializer(queryset, many=True)
-
     return serialized_geo
 
 
