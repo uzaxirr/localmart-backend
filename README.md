@@ -43,6 +43,14 @@ POST, GET
 
 https://localmart-api.herokuapp.com/api/inventory - Create and Get Inventory
 
+
+GET
+
+
+https://localmart-api.herokuapp.com/api/inventory/;id - Get Inventory through Store ID
+
+
+
 POST, GET
 
 

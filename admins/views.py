@@ -89,6 +89,12 @@ def create_and_get_inventory(request):
         serialized_data = InventorySerializer(inventory, many=True)
         return Response(serialized_data.data)
 
+@api_view(['GET'])
+def get_store_inventory(request, pk):
+    queryset = InventoryModel.objects.filter(store_id=pk)
+    serialized = InventorySerializer(queryset, many=True)
+    return Response(serialized.data, status=status.HTTP_200_OK)
+
 @api_view(['GET', 'POST'])
 def create_and_get_store(request):
     """Create Store"""

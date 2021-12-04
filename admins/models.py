@@ -59,8 +59,7 @@ class OrdersModel(models.Model):
     id = models.AutoField(primary_key=True)
     order_id = models.CharField(max_length=50)
     items = ArrayField(models.IntegerField(), null=True)
-    #TODO: Add Items Array 
-
+    
     def __str__(self) -> str:
         return self.order_id
         

@@ -12,6 +12,7 @@ from .views import (
     get_properites,
     get_geo_by_id,
     products_by_id,
+    get_store_inventory,
     )
 urlpatterns = [
     path('product', create_and_get_products),
@@ -21,6 +22,7 @@ urlpatterns = [
     path('geo', create_and_get_geometry),
     path('geo/<int:pk>', get_geo_by_id),
     path('inventory', create_and_get_inventory),
+    path('inventory/<int:pk>', get_store_inventory),
     path('store', create_and_get_store),
     path('stores', get_all_stores),
     path('inventory/products/<int:pk>', get_inventory_products),
