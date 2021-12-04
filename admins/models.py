@@ -24,6 +24,7 @@ class ProperitesModel(models.Model):
     def __str__(self) -> str:
         return self.store_name
 
+
 class ProductModel(models.Model):
     """Model To hold details of product"""
     id = models.AutoField(primary_key=True)

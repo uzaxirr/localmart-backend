@@ -135,6 +135,18 @@ def get_inventory_products(request, pk):
     serialized_data = InventorySerializer(inventory, many=True)
     return Response(serialized_data.data)
 
+@api_view(['GET'])
+def get_properites(request, pk):
+    prop = ProperitesModel.objects.filter(id=pk)
+    serialized_data = ProperitesSerializer(prop, many=True)
+    return Response(serialized_data.data)
+
+@api_view(['GET'])
+def get_geo_by_id(request, pk):
+    queryset = GeometryModel.objects.filter(id=pk)
+    serialized = GeometrySerializer(queryset, many=True)
+    return Response(serialized.data)
+
 @api_view(['GET', 'POST'])
 def make_payment(request):
     """Make Payments Using Razorpay"""
