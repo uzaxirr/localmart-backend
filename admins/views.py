@@ -1,6 +1,7 @@
 import json
 import hmac
 import hashlib
+import decimal
 from django.shortcuts import render
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
@@ -62,6 +63,8 @@ def create_and_get_geometry(request):
     """Create Geometry"""
     body_data = request.data
     if request.method == 'POST':
+        body_data['coordinates'][0] = float(body_data['coordinates'][0])
+        body_data['coordinates'][1] = float(body_data['coordinates'][1])
         serialized_data = GeometrySerializer(data=body_data)
         if serialized_data.is_valid():
             serialized_data.save()
@@ -222,4 +225,3 @@ def get_order_by_store(request, pk):
     orders = OrdersModel.objects.filter(store_id=pk)
     serialized_data = OrderSerializer(orders, many=True)
     return Response(serialized_data.data)
-    

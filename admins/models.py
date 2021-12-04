@@ -7,7 +7,7 @@ class GeometryModel(models.Model):
     """Model To hold Postion of store in map"""
     id = models.AutoField(primary_key=True)
     type = models.CharField(max_length=50, default="Point")
-    coordinates = ArrayField(models.DecimalField(max_digits=16, decimal_places=14), size=2)
+    coordinates = ArrayField(models.FloatField(), size=2)
 
 
 class ProperitesModel(models.Model):
