@@ -42,8 +42,6 @@ def products_by_id(request, pk):
         return Response(status=status.HTTP_204_NO_CONTENT)
 
 @api_view(['GET', 'POST'])
-
-@api_view(['GET', 'POST'])
 def create_and_get_properties(request):
     """Create Properties"""
     body_data = request.data
