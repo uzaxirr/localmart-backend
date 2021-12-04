@@ -143,7 +143,15 @@ def get_inventory_products(request, pk):
     """Get inventory products"""
     inventory = ProductModel.objects.filter(inventory_id=pk)
     serialized_data = InventorySerializer(inventory, many=True)
-    return Response(serialized_data.data)
+    all_products = []
+    for product in serialized_data.data:
+        product_id = product["id"]
+        resp = get_product_by_id(product_id)
+        print(resp.data[0])
+        all_products.append(resp.data[0])
+    # print(serialized_data.data[0]['id'])
+    print(all_products)
+    return Response(all_products)
 
 @api_view(['GET'])
 def get_properites(request, pk):
@@ -156,6 +164,11 @@ def get_geo_by_id(request, pk):
     queryset = GeometryModel.objects.filter(id=pk)
     serialized = GeometrySerializer(queryset, many=True)
     return Response(serialized.data)
+
+def get_product_by_id(obj_id):
+    queryset = ProductModel.objects.filter(id=obj_id)
+    serialized_data = ProductSerializer(queryset, many=True)
+    return serialized_data
 
 @api_view(['GET', 'POST'])
 def make_payment(request):
