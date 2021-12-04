@@ -5,7 +5,12 @@ Base URL: https://localmart-api.herokuapp.com/
 POST, GET
 
 
-https://localmart-api.herokuapp.com/api/products - Create and Get Products
+https://localmart-api.herokuapp.com/api/product - Create or Get all Products
+
+
+GET, DELETE
+
+https://localmart-api.herokuapp.com/api/product/:id - Get Or Delete a Product By ID
 
 POST, GET
 
@@ -51,7 +56,7 @@ https://localmart-api.herokuapp.com/api/stores - Get All Stores
 
 
 GET
-https://localmart-api.herokuapp.com/api/products/:id - Get All Products of a inventory
+https://localmart-api.herokuapp.com/api/inventory/products/:id - Get All Products of a inventory
 
 
 POST

@@ -30,6 +30,18 @@ def create_and_get_products(request):
         serialized_data = ProductSerializer(products, many=True)
         return Response(serialized_data.data)
 
+@api_view(['GET', 'DELETE'])
+def products_by_id(request, pk):
+    if request.method == 'GET':
+        queryset = ProductModel.objects.filter(id=pk)
+        serialized = ProductSerializer(queryset, many=True)
+        return Response(serialized.data, status=status.HTTP_200_OK)
+    if request.method == 'DELETE':
+        queryset = ProductModel.objects.filter(id=pk)
+        queryset.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)
+
+@api_view(['GET', 'POST'])
 
 @api_view(['GET', 'POST'])
 def create_and_get_properties(request):
